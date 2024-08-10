@@ -40,14 +40,14 @@ app.MapPost("/api/sendemail", (
     {
         var msg = $"Failed to send email. Error: {ex.Message}";
         logger.LogError(msg);
-        return msg;
+        Results.BadRequest(msg);
     }
     return "Email sent!";
 });
 
 app.Run();
 
-public record EmailMessage(string token, string Sender, string Subject, string Body);
+public record EmailMessage(string? token, string? Sender,string? Name, string? Email, string? Subject, string? Body);
 
 public record EmailConfiguration(string Server, int Port, string Username, string Password);
 
